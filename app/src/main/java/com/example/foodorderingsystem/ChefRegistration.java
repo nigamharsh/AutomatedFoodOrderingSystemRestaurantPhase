@@ -1,6 +1,7 @@
 package com.example.foodorderingsystem;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
@@ -48,19 +49,19 @@ public class ChefRegistration extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chef_registration);
 
-        Fname = (TextInputLayout)findViewById(R.id.FirstName);
-        Lname = (TextInputLayout)findViewById(R.id.LastName);
-        Email = (TextInputLayout)findViewById(R.id.Email);
-        Pass = (TextInputLayout)findViewById(R.id.Pwd);
-        cpass = (TextInputLayout)findViewById(R.id.Cpass);
-        mobileno = (TextInputLayout)findViewById(R.id.Mobileno);
-        houseno = (TextInputLayout)findViewById(R.id.houseNo);
-        pincode = (TextInputLayout)findViewById(R.id.Pincode);
-        Statespin = (Spinner) findViewById(R.id.Statee);
-        Cityspin = (Spinner) findViewById(R.id.Citys);
-        area = (TextInputLayout)findViewById(R.id.Area);
+        Fname=(TextInputLayout)findViewById(R.id.FirstName);
+        Lname=(TextInputLayout)findViewById(R.id.LastName);
+        Email=(TextInputLayout)findViewById(R.id.Email);
+        Pass=(TextInputLayout)findViewById(R.id.Pwd);
+        cpass=(TextInputLayout)findViewById(R.id.Cpass);
+        mobileno=(TextInputLayout)findViewById(R.id.Mobileno);
+        houseno=(TextInputLayout)findViewById(R.id.houseNo);
+        pincode=(TextInputLayout)findViewById(R.id.Pincode);
+        Statespin=(Spinner)findViewById(R.id.Statee);
+        Cityspin=(Spinner)findViewById(R.id.Citys);
+        area=(TextInputLayout)findViewById(R.id.Area);
 
-        signup = (Button)findViewById(R.id.Signup);
+        signup=(Button)findViewById(R.id.Signup);
         Emaill = (Button)findViewById(R.id.email);
         Phone = (Button)findViewById(R.id.phone);
 
@@ -110,8 +111,10 @@ public class ChefRegistration extends AppCompatActivity {
 
             }
         });
-        databaseReference = FirebaseDatabase.getInstance().getReference("Chef");
+
+        databaseReference = firebaseDatabase.getInstance().getReference("Chef");
         FAuth = FirebaseAuth.getInstance();
+
 
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -180,9 +183,6 @@ public class ChefRegistration extends AppCompatActivity {
                                                                 public void onClick(DialogInterface dialog, int which) {
 
                                                                     dialog.dismiss();
-                                                                    String phonenumber=Cpp.getSelectedCountryCodeWithPlus() + mobile;
-                                                                    Intent b=new Intent(ChefRegistration.this,ChefVerifyPhone.class);
-                                                                    startActivity(b);
 
                                                                 }
                                                             });
@@ -204,14 +204,29 @@ public class ChefRegistration extends AppCompatActivity {
                         }
                     });
                 }
-//
+            }
+        });
+
+        Email.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ChefRegistration.this,ChefLogin.class));
+                finish();
+            }
+        });
+
+        Phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ChefRegistration.this,ChefLoginPhone.class));
+                finish();
             }
         });
 
     }
 
     String emailpattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
-    public boolean isValid(){
+    public boolean isValid() {
         Email.setErrorEnabled(false);
         Email.setError("");
         Fname.setErrorEnabled(false);
@@ -231,79 +246,79 @@ public class ChefRegistration extends AppCompatActivity {
         pincode.setErrorEnabled(false);
         pincode.setError("");
 
-        boolean isValid=false,isValidhouseno=false,isValidlname=false,isValidname=false,isValidemail=false,isValidpassword=false,isValidconfpassword=false,isValidmobilenum=false,isValidarea=false,isValidpincode=false;
-        if(TextUtils.isEmpty(fname)){
+        boolean isValid = false, isValidhouseno = false, isValidlname = false, isValidname = false, isValidemail = false, isValidpassword = false, isValidconfpassword = false, isValidmobilenum = false, isValidarea = false, isValidpincode = false;
+        if (TextUtils.isEmpty(fname)) {
             Fname.setErrorEnabled(true);
             Fname.setError("Enter First Name");
-        }else{
+        } else {
             isValidname = true;
         }
-        if(TextUtils.isEmpty(lname)){
+        if (TextUtils.isEmpty(lname)) {
             Lname.setErrorEnabled(true);
             Lname.setError("Enter Last Name");
-        }else{
+        } else {
             isValidlname = true;
         }
-        if(TextUtils.isEmpty(emailid)){
+        if (TextUtils.isEmpty(emailid)) {
             Email.setErrorEnabled(true);
             Email.setError("Email Is Required");
-        }else{
-            if(emailid.matches(emailpattern)){
+        } else {
+            if (emailid.matches(emailpattern)) {
                 isValidemail = true;
-            }else{
+            } else {
                 Email.setErrorEnabled(true);
                 Email.setError("Enter a Valid Email Id");
             }
         }
-        if(TextUtils.isEmpty(password)){
+        if (TextUtils.isEmpty(password)) {
             Pass.setErrorEnabled(true);
             Pass.setError("Enter Password");
-        }else{
-            if(password.length()<8){
+        } else {
+            if (password.length() < 8) {
                 Pass.setErrorEnabled(true);
                 Pass.setError("Password is Weak");
-            }else{
+            } else {
                 isValidpassword = true;
             }
         }
-        if(TextUtils.isEmpty(confpassword)){
+        if (TextUtils.isEmpty(confpassword)) {
             cpass.setErrorEnabled(true);
             cpass.setError("Enter Password Again");
-        }else{
-            if(!password.equals(confpassword)){
+        } else {
+            if (!password.equals(confpassword)) {
                 cpass.setErrorEnabled(true);
                 cpass.setError("Password Dosen't Match");
-            }else{
+            } else {
                 isValidconfpassword = true;
             }
         }
-        if(TextUtils.isEmpty(mobile)){
+        if (TextUtils.isEmpty(mobile)) {
             mobileno.setErrorEnabled(true);
             mobileno.setError("Mobile Number Is Required");
-        }else{
-            if(mobile.length()<10){
+        } else {
+            if (mobile.length() < 10) {
                 mobileno.setErrorEnabled(true);
                 mobileno.setError("Invalid Mobile Number");
-            }else{
+            } else {
                 isValidmobilenum = true;
             }
         }
-        if(TextUtils.isEmpty(Area)){
+        if (TextUtils.isEmpty(Area)) {
             area.setErrorEnabled(true);
             area.setError("Area Is Required");
-        }else{
+        } else {
             isValidarea = true;
         }
-        if(TextUtils.isEmpty(Pincode)){
+        if (TextUtils.isEmpty(Pincode)) {
             pincode.setErrorEnabled(true);
             pincode.setError("Please Enter Pincode");
-        }else{
+        } else {
             isValidpincode = true;
         }
-        if(TextUtils.isEmpty(house)){
+        if (TextUtils.isEmpty(house)) {
             houseno.setErrorEnabled(true);
             houseno.setError("Fields Can't Be Empty");
-        }else{
+        } else {
             isValidhouseno = true;
         }
 
