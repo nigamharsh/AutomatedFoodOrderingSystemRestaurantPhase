@@ -57,8 +57,8 @@ public class ChefRegistration extends AppCompatActivity {
         mobileno=(TextInputLayout)findViewById(R.id.Mobileno);
         houseno=(TextInputLayout)findViewById(R.id.houseNo);
         pincode=(TextInputLayout)findViewById(R.id.Pincode);
-        Statespin=(Spinner)findViewById(R.id.Statee);
-        Cityspin=(Spinner)findViewById(R.id.Citys);
+       Statespin=(Spinner)findViewById(R.id.Statee);
+       Cityspin=(Spinner)findViewById(R.id.Citys);
         area=(TextInputLayout)findViewById(R.id.Area);
 
         signup=(Button)findViewById(R.id.Signup);
@@ -67,7 +67,7 @@ public class ChefRegistration extends AppCompatActivity {
 
         Cpp = (CountryCodePicker)findViewById(R.id.CountryCode);
 
-        Statespin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+       Statespin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
@@ -112,7 +112,7 @@ public class ChefRegistration extends AppCompatActivity {
             }
         });
 
-        databaseReference = firebaseDatabase.getInstance().getReference("Chef");
+        databaseReference = firebaseDatabase.getInstance().getReference().child("Chef");
         FAuth = FirebaseAuth.getInstance();
 
 

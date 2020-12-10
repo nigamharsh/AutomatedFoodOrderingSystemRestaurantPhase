@@ -29,7 +29,7 @@ public class ChefLoginPhone extends AppCompatActivity {
         num = (EditText)findViewById(R.id.number);
         sendotp = (Button)findViewById(R.id.otp);
         cpp=(CountryCodePicker)findViewById(R.id.CountryCode);
-        signinemail=(Button)findViewById(R.id.Email);
+        signinemail=(Button)findViewById(R.id.btnEmail);
         signup = (TextView)findViewById(R.id.acsignup);
 
         Fauth = FirebaseAuth.getInstance();
@@ -39,16 +39,15 @@ public class ChefLoginPhone extends AppCompatActivity {
             public void onClick(View v) {
 
                 number=num.getText().toString().trim();
-                String Phonenumber = cpp.getSelectedCountryCodeWithPlus()+number;
+                String Phonenum = cpp.getSelectedCountryCodeWithPlus()+number;
                 Intent b = new Intent(ChefLoginPhone.this,Chefsendotp.class);
 
-                b.putExtra("Phonenumber",Phonenumber);
+                b.putExtra("Phonenum",Phonenum);
                 startActivity(b);
                 finish();
 
             }
         });
-
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,7 +55,6 @@ public class ChefLoginPhone extends AppCompatActivity {
                 finish();
             }
         });
-
         signinemail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -64,5 +62,6 @@ public class ChefLoginPhone extends AppCompatActivity {
                 finish();
             }
         });
+
     }
 }

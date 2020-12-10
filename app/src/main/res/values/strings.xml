@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">Food Ordering System</string>
+    <string name="app_name">Foodiest</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="dish_name">Dish Name</string>
 
     <string-array name="State">
         <item>Maharashtra</item>
@@ -16,6 +17,8 @@
 
     <string-array name="DishName">
         <item>Thepla</item>
+        <item>Chicken</item>
+        <item>Paneer Dishes</item>
         <item>Dal Rice</item>
         <item>Dhokla</item>
         <item>Sabji Roti</item>

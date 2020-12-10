@@ -36,7 +36,7 @@
             android:layout_width="258dp"
             android:layout_height="65dp"
             android:layout_gravity="center_horizontal"
-            android:src="@drawable/logo7" />
+            android:src="@drawable/img16" />
 
 
 
